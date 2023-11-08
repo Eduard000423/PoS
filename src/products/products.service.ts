@@ -11,7 +11,7 @@ export class ProductService {
   ) {}
 
   async listProduct(): Promise<productDTO[]> {
-    return this.productModel.find().exec();
+    return await this.productModel.find().exec();
   }
 
   async findOne(id: ObjectId) {

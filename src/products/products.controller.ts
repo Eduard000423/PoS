@@ -10,6 +10,7 @@ import {
 import { ProductService } from './products.service';
 import { productDTO } from 'src/Dto/products.dto';
 import { ObjectId } from 'mongoose';
+import { ObjectIdValidator } from 'src/Pipes/ValidateObjectId.pipe';
 
 @Controller('product')
 export class Products_Controller {
@@ -20,7 +21,7 @@ export class Products_Controller {
     return this.productService.listProduct();
   }
   @Get(':id')
-  findOne(@Param('id') id: ObjectId) {
+  findOne(@Param('id', ObjectIdValidator) id: ObjectId) {
     return this.productService.findOne(id);
   }
 
@@ -31,12 +32,15 @@ export class Products_Controller {
   }
 
   @Delete(':id')
-  deleteProduct(@Param('id') id: ObjectId) {
+  deleteProduct(@Param('id', ObjectIdValidator) id: ObjectId) {
     this.productService.deleteProduct(id);
   }
 
   @Patch(':id')
-  updateProduct(@Param('id') id: ObjectId, @Body() body: productDTO) {
+  updateProduct(
+    @Param('id', ObjectIdValidator) id: ObjectId,
+    @Body() body: productDTO,
+  ) {
     this.productService.updateProduct(id, body);
     return { status: 'OK' };
   }
