@@ -25,6 +25,6 @@ export class MassiveService {
     }
 
     this.productModel.insertMany(json);
-    await rm(`./tempLoad/${fileName}}`);
+    await rm(`./tempLoad/${fileName}`);
   }
 }
