@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { product } from 'src/products/products.schema';
@@ -26,9 +26,13 @@ export class MassiveService {
     try {
       await this.productModel.insertMany(json);
     } catch (err) {
-      return 'Formato Excel Incorrecto';
+      return {
+        error: 'Formato Excel Incorrecto',
+        status: HttpStatus.BAD_GATEWAY,
+      };
     } finally {
       await rm(`./tempLoad/${fileName}`);
     }
+    return { messege: 'Carga Massiva Exitosa', status: HttpStatus.ACCEPTED };
   }
 }

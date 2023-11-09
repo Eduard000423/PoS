@@ -24,9 +24,10 @@ export class MassiveController {
         }),*/
     file: Express.Multer.File,
   ) {
-    const error = await this.massiveService.massive(file.filename);
-    if (error) {
-      throw new HttpException(error, HttpStatus.BAD_REQUEST);
+    const response = await this.massiveService.massive(file.filename);
+    if (response?.error) {
+      throw new HttpException(response.error, response.status);
     }
+    return response;
   }
 }
