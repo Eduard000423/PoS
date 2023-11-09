@@ -8,4 +8,8 @@ export class MassiveService {
   constructor(
     @InjectModel(product.name) private productModel: Model<product>,
   ) {}
+
+  massive(excel) {
+    
+  }
 }

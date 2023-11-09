@@ -31,6 +31,7 @@
     "mongoose": "^7.6.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",
+    "xlsx": "^0.18.5",
     "zod": "^3.22.4"
   },
   "devDependencies": {
