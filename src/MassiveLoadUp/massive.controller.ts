@@ -1,5 +1,6 @@
 import {
   Controller,
+  HttpException,
   HttpStatus,
   ParseFilePipeBuilder,
   Post,
@@ -15,7 +16,7 @@ export class MassiveController {
 
   @Post()
   @UseInterceptors(FileInterceptor('file'))
-  massiveLoadUp(
+  async massiveLoadUp(
     @UploadedFile() /* new ParseFilePipeBuilder()
         .addFileTypeValidator({ fileType: 'xlsx' })
         .build({
@@ -23,6 +24,9 @@ export class MassiveController {
         }),*/
     file: Express.Multer.File,
   ) {
-    this.massiveService.massive(file.filename);
+    const error = await this.massiveService.massive(file.filename);
+    if (error) {
+      throw new HttpException(error, HttpStatus.BAD_REQUEST);
+    }
   }
 }

@@ -23,8 +23,12 @@ export class MassiveService {
       const dataJson = data[i];
       json.push(dataJson);
     }
-
-    this.productModel.insertMany(json);
-    await rm(`./tempLoad/${fileName}`);
+    try {
+      await this.productModel.insertMany(json);
+    } catch (err) {
+      return 'Formato Excel Incorrecto';
+    } finally {
+      await rm(`./tempLoad/${fileName}`);
+    }
   }
 }
