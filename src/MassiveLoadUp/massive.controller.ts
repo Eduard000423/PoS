@@ -1,14 +1,18 @@
 import {
   Controller,
+  Get,
   HttpException,
   HttpStatus,
   ParseFilePipeBuilder,
   Post,
+  Res,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { MassiveService } from './massive.service';
+import { join } from 'path';
+import { of } from 'rxjs';
 
 @Controller('massive')
 export class MassiveController {
@@ -29,5 +33,14 @@ export class MassiveController {
       throw new HttpException(response.error, response.status);
     }
     return response;
+  }
+
+  @Get()
+  getExcel(@Res() response) {
+    return of( 
+      response.sendFile(
+        join(process.cwd(), 'src/MassiveLoadUp/Modelo/Model_Excel.xlsx'),
+      ),
+    );
   }
 }

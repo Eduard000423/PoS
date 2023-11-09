@@ -28,7 +28,7 @@ export class MassiveService {
     } catch (err) {
       return {
         error: 'Formato Excel Incorrecto',
-        status: HttpStatus.BAD_GATEWAY,
+        status: HttpStatus.BAD_REQUEST,
       };
     } finally {
       await rm(`./tempLoad/${fileName}`);
