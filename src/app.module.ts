@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Users } from './users/users.module';
 import { loginModule } from './login/login.module';
 import { ProductsModule } from './products/products.module';
+import { MassiveModule } from './MassiveLoadUp/massive.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { ProductsModule } from './products/products.module';
     Users,
     ProductsModule,
     loginModule,
+    MassiveModule,
   ],
   controllers: [AppController],
   providers: [AppService],

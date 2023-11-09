@@ -7,21 +7,22 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { MassiveService } from './massive.service';
 
 @Controller('massive')
 export class MassiveController {
-  constructor() {}
+  constructor(private readonly massiveService: MassiveService) {}
 
   @Post()
   @UseInterceptors(FileInterceptor('file'))
   massiveLoadUp(
-    @UploadedFile(
-      new ParseFilePipeBuilder()
-        .addFileTypeValidator({ fileType: '.xlsx' })
+    @UploadedFile() /* new ParseFilePipeBuilder()
+        .addFileTypeValidator({ fileType: 'xlsx' })
         .build({
           errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY,
-        }),
-    )
-    file: Array<Express.Multer.File>,
-  ) {}
+        }),*/
+    file: Express.Multer.File,
+  ) {
+    this.massiveService.massive(file.filename);
+  }
 }
