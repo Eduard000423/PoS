@@ -2,8 +2,6 @@ import {
   Controller,
   Get,
   HttpException,
-  HttpStatus,
-  ParseFilePipeBuilder,
   Post,
   Res,
   UploadedFile,
@@ -37,7 +35,7 @@ export class MassiveController {
 
   @Get()
   getExcel(@Res() response) {
-    return of( 
+    return of(
       response.sendFile(
         join(process.cwd(), 'src/MassiveLoadUp/Modelo/Model_Excel.xlsx'),
       ),
