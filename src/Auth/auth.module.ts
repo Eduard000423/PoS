@@ -12,6 +12,7 @@ import { ConfigService } from '@nestjs/config';
       //Halle La solucion en @nestjs/jwt
       useFactory: async (configService: ConfigService) => ({
         secret: configService.get<string>('SECRET'),
+        signOptions: { algorithm: 'HS256' },
       }),
       inject: [ConfigService],
     }),
