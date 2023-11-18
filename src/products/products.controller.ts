@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { ProductService } from './products.service';
 import { productDTO } from 'src/Dto/products.dto';
@@ -17,8 +18,8 @@ export class Products_Controller {
   constructor(private readonly productService: ProductService) {}
 
   @Get('list')
-  listProducts() {
-    return this.productService.listProduct();
+  listProducts(@Query('page') page: number, @Query('limit') limit: number) {
+    return this.productService.listProduct(page, limit);
   }
   @Get(':id')
   findOne(@Param('id', ObjectIdValidator) id: ObjectId) {

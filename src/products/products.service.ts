@@ -10,8 +10,10 @@ export class ProductService {
     @InjectModel(product.name) private productModel: Model<product>,
   ) {}
 
-  async listProduct(): Promise<productDTO[]> {
-    return await this.productModel.find().exec();
+  async listProduct(page: number, limit: number): Promise<productDTO[]> {
+    return await this.productModel
+      .find({}, {}, { limit: limit, skip: limit * (page - 1) })
+      .exec();
   }
 
   async findOne(id: ObjectId) {

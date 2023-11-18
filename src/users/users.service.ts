@@ -8,8 +8,13 @@ import { UsersDto } from 'src/Dto/users.dto';
 export class UserService {
   constructor(@InjectModel(persona.name) private userModel: Model<persona>) {}
 
-  findAll(): Promise<persona[]> {
-    return this.userModel.find({}, 'name edad gender user rol').exec();
+  findAll(page: number, limit: number): Promise<persona[]> {
+    return this.userModel
+      .find({}, 'name edad gender user rol', {
+        limit: limit,
+        skip: limit * (page - 1),
+      })
+      .exec();
   }
 
   createUser(data: UsersDto): Promise<persona> {

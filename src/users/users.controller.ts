@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
@@ -23,8 +24,11 @@ export class userController {
   constructor(private userService: UserService) {}
 
   @Get() //Listar
-  listUsers(): Promise<persona[]> {
-    return this.userService.findAll();
+  listUsers(
+    @Query('page') query: number,
+    @Query('limit') limit: number,
+  ): Promise<persona[]> {
+    return this.userService.findAll(query, limit);
   }
 
   @Get(':id') //Traer un Usuario dado un Id
