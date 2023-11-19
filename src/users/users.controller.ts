@@ -18,7 +18,8 @@ import mongoose from 'mongoose';
 import { ObjectIdValidator } from 'src/Pipes/ValidateObjectId.pipe';
 import { Roles } from 'src/Reflectors/role.reflector';
 import { checkToken } from 'src/Guards/checkToken.guard';
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('Users')
 @Controller('users')
 export class userController {
   constructor(private userService: UserService) {}

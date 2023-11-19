@@ -11,7 +11,8 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { MassiveService } from './massive.service';
 import { join } from 'path';
 import { of } from 'rxjs';
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('Masive')
 @Controller('massive')
 export class MassiveController {
   constructor(private readonly massiveService: MassiveService) {}

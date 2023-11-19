@@ -9,8 +9,6 @@ async function bootstrap() {
     .setTitle('PoS Api')
     .setDescription('Api para El consumo EnZona')
     .setVersion('1.0')
-    .addTag('Usuarios')
-    .addTag('Productos')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

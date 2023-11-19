@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Users } from './users/users.module';
 import { loginModule } from './login/login.module';
@@ -26,7 +24,5 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     loginModule,
     MassiveModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}

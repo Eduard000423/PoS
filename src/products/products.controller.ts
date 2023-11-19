@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   Query,
@@ -12,15 +13,21 @@ import { ProductService } from './products.service';
 import { productDTO } from 'src/Dto/products.dto';
 import { ObjectId } from 'mongoose';
 import { ObjectIdValidator } from 'src/Pipes/ValidateObjectId.pipe';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Products')
 @Controller('product')
 export class Products_Controller {
   constructor(private readonly productService: ProductService) {}
 
   @Get('list')
-  listProducts(@Query('page') page: number, @Query('limit') limit: number) {
+  listProducts(
+    @Query('page', ParseIntPipe) page: number,
+    @Query('limit', ParseIntPipe) limit: number,
+  ) {
     return this.productService.listProduct(page, limit);
   }
+
   @Get(':id')
   findOne(@Param('id', ObjectIdValidator) id: ObjectId) {
     return this.productService.findOne(id);
