@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { persona } from 'src/users/users.schema.';
+import { persona } from 'src/NoSQL/users/users.schema.';
 import { JwebTokenService } from 'src/Auth/jwebtoken.service';
 
 @Injectable()

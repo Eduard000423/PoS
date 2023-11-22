@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { MassiveController } from './massive.controller';
 import { MassiveService } from './massive.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { ProductSchema, product } from 'src/products/products.schema';
+import { ProductSchema, product } from 'src/NoSQL/products/products.schema';
 import { MulterModule } from '@nestjs/platform-express';
 
 @Module({

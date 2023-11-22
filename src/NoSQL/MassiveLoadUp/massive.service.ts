@@ -1,7 +1,7 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { product } from 'src/products/products.schema';
+import { product } from 'src/NoSQL/products/products.schema';
 import * as XLSX from 'xlsx';
 import { rm } from 'fs/promises';
 

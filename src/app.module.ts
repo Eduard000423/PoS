@@ -1,28 +1,13 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
-import { Users } from './users/users.module';
-import { loginModule } from './login/login.module';
-import { ProductsModule } from './products/products.module';
-import { MassiveModule } from './MassiveLoadUp/massive.module';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
+import { SQL_Module } from './SQL/SQL.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    MongooseModule.forRootAsync({
-      useFactory: async (configService: ConfigService) => {
-        return {
-          uri: configService.get('DB_URL'),
-        };
-      },
-      inject: [ConfigService],
-    }),
-    Users,
-    ProductsModule,
-    loginModule,
-    MassiveModule,
+    SQL_Module,
   ],
 })
 export class AppModule {}
