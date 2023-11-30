@@ -1,10 +1,4 @@
-import {
-  Column,
-  Entity,
-  OneToMany,
-  PrimaryColumn,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Product } from './product.entity';
 import { privilegioDto } from 'src/Dto/privilegio.dto';
 
@@ -18,7 +12,7 @@ export class User {
   edad: number;
   @Column()
   gender: string;
-  @PrimaryColumn({ unique: true })
+  @Column()
   user: string;
   @Column()
   pass: string;
@@ -26,8 +20,9 @@ export class User {
   privilegios: privilegioDto;
   @Column()
   rol: string;
-  @OneToMany(() => Product, (product) => product.id)
+  @OneToMany(() => Product, (product) => product.user)
   products: Product[];
+
   constructor(
     name: string,
     edad: number,

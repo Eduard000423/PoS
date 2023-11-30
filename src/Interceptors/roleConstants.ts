@@ -10,7 +10,7 @@ export const MODERATOR = {
   eliminar: false,
   crear: false,
 };
-export const Admin = {
+export const ADMIN = {
   lectura: true,
   modificar: true,
   eliminar: false,

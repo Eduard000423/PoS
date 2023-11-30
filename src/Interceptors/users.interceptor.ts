@@ -24,7 +24,7 @@ export class privilegioInterceptor implements NestInterceptor {
         data.privilegios = roles.MODERATOR;
         break;
       case 'Admin':
-        data.privilegios = roles.Admin;
+        data.privilegios = roles.ADMIN;
         break;
       case 'SuperAdmin':
         data.privilegios = roles.SUPERADMIN;
